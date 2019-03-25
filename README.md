@@ -11,7 +11,3 @@ Que problemas seu produto resolve para estes usuários?
 Quais são os objetivos destes usuários com relação ao produto?
 
 Quais são as principais funcionalidades do produto?
-
-
-
-
