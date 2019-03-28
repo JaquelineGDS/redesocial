@@ -9,7 +9,6 @@
   };
   firebase.initializeApp(config);
 
-
 //input
 let InputEmail1 = document.querySelector('#InputEmail1');
 let InputPassword1 = document.querySelector('#InputPassword1');
@@ -44,7 +43,7 @@ const btnSingUp = document.querySelector('.btnSingUp');
 
     firebase
         .auth()
-        .signInWithEmailAndPassword(InputEmail1.value, InputPassword1.value)
+        .signInWithEmailAndPassword(InputEmail, InputPassword)
         .then(function(result){
             console.log(result);
             alert('Autenticado ' + InputEmail1.value);
