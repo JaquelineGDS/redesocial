@@ -20,8 +20,10 @@
                
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <img class="img-logo mx-auto" src="img/logo-branco.png" alt="logotipo">
-                    <div class="card card-signin my-5"> 
+                    <div class="text-center">
+                        <img class="img-fluid pb-0" src="img/logo-branco.png" alt="logotipo">
+                    </div>
+                    <div class="card card-signin shadow pb-0"> 
 
                         <div class="card-header text-center">      
                             <h5 class="card-title text-center color-green">Sign In</h5>
@@ -31,23 +33,23 @@
                             <form class="form-signin formLogin-border">
                                 <div class="form-group">
                                     <label for="InputEmail1">Email</label>
-                                    <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                    <small id="emailHelp" class="form-text text-muted">Nós nunca vamos compartilhar seu e-mail com mais ninguém.</small>
+                                    <input type="email" class="form-control InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <small class="form-text text-muted">Nós nunca vamos compartilhar seu e-mail com mais ninguém.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="InputPassword1">Senha</label>
-                                    <input type="password" class="form-control" id="InputPassword1" placeholder="Senha">
-                                    <small id="emailHelp" class="form-text text-muted"><a href="">Esqueceu sua senha?</a></small>
+                                    <input type="password" class="form-control InputPassword" placeholder="Senha">
+                                    <small class="form-text text-muted"><a href="">Esqueceu sua senha?</a></small>
                                 </div>
-                                <button id="btnSingIn" class="btn btn-lg bkg-bkg btn-block btn-outline text-uppercase" type="submit">Sign in</button>
+                                <button  class="btn btn-sm bkg-bkg btn-block btnSingnIn" type="submit">Acessar</button>
                             </form>
                         </div>
 
-                        <div class="card-footer color-green-baby">
+                        <div class="card-footer">
                             <h6 class="text-center">Ainda não possui uma conta?<a href="singup.html" class=""> Criar uma conta</a></h6>
                         </div>
+
                     </div>
-                   
                 </div>
             </div>
         </div>
@@ -55,8 +57,8 @@
         </div>
     </section>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -64,9 +66,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-    <script src="main.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+    <script src="database.js"></script>
+    <script src="singin.js"></script>
+    
 </body>
-
 </html>

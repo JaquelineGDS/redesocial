@@ -38,7 +38,7 @@ const btnSingUp = document.querySelector('.btnSingUp');
   });
 
 
-  btnSingIn.addEventListener('click', function (event){
+  btnSingIn.addEventListener('click', function(event){
     event.preventDefault();
     console.log("AQUI");
 
@@ -49,7 +49,7 @@ const btnSingUp = document.querySelector('.btnSingUp');
             console.log(result);
             alert('Autenticado ' + InputEmail1.value);
         })
-        .catch(function(error) {
+        .catch(function(error){
             console.error(error.code);
             console.error(error.message);
             alert('Falha ao autenticar, verifique o erro no console');

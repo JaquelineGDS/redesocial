@@ -1,7 +1,5 @@
 .bkg-bkg{
-   /*background-image: linear-gradient(to right, #5acb9d, #28ad5a);*/
    background-color: #4FBD8F;
-   color: beige;
 }
 
 .formLogin-border{
@@ -9,7 +7,7 @@
 }
 
 .img-logo{
-width: 120px;
+    width: 40%;
 }
 
 .color-green{
@@ -17,6 +15,5 @@ width: 120px;
 }
 
 .color-green-baby{
-    background-color: rgb(147, 216, 186);
-    
+    background-color: rgb(147, 216, 186);   
 }
