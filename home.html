@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Love Pets</title>
+</head>
+
+<body class="bkg-bkg color-green-baby">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"><img class="img-logo" src="img/logo-branco.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Seu perfil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Eventos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Calendário de Vacinações</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Serviços para seu pet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Ajude um amigo pet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Busca</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <div class="container">
+            <div class="filter">
+                <i class="fas fa-filter"></i>
+                <a class="color-black" href="">Filtrar publicações</a>
+            </div>
+            <div class="card">
+                <div class="card-header bkg-bkg">
+                    NomedoPerfil
+                    <button type="button" class="btn btn-primary btn-sm btn-light">Postar</button>
+                </div>
+                <div class="card-body">
+                    <textarea class="card-text" placeholder="Conte a seus amigos as novidades..."></textarea>
+                </div>
+                <div class="card-header bkg-bkg">
+                    <i class="far fa-images"></i>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle btn-light" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Privacidade
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Público</a>
+                            <a class="dropdown-item" href="#">Amigos</a>
+                            <a class="dropdown-item" href="#">Só para mim</a>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle btn-light" type="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tipo de postagem
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Eventos</a>
+                            <a class="dropdown-item" href="#">Dicas</a>
+                            <a class="dropdown-item" href="#">Procura-se</a>
+                            <a class="dropdown-item" href="#">Doa-se</a>
+                            <a class="dropdown-item" href="#">Serviços</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script src="main.js"></script>
+
+</body>
+
+</html>
