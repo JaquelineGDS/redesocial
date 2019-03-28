@@ -9,7 +9,6 @@
   };
   firebase.initializeApp(config);
 
-
 //input
 let InputEmail1 = document.querySelector('#InputEmail1');
 let InputPassword1 = document.querySelector('#InputPassword1');
@@ -38,18 +37,18 @@ const btnSingUp = document.querySelector('.btnSingUp');
   });
 
 
-  btnSingIn.addEventListener('click', function (event){
+  btnSingIn.addEventListener('click', function(event){
     event.preventDefault();
     console.log("AQUI");
 
     firebase
         .auth()
-        .signInWithEmailAndPassword(InputEmail1.value, InputPassword1.value)
+        .signInWithEmailAndPassword(InputEmail, InputPassword)
         .then(function(result){
             console.log(result);
             alert('Autenticado ' + InputEmail1.value);
         })
-        .catch(function(error) {
+        .catch(function(error){
             console.error(error.code);
             console.error(error.message);
             alert('Falha ao autenticar, verifique o erro no console');

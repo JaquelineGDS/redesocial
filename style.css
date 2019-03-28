@@ -1,5 +1,4 @@
 .bkg-bkg{
-   /*background-image: linear-gradient(to right, #5acb9d, #28ad5a);*/
    background-color: #4FBD8F;
 }
 
@@ -8,7 +7,11 @@
 }
 
 .img-logo{
+<<<<<<< HEAD
+    width: 40%;
+=======
 width: 40%;
+>>>>>>> refs/remotes/origin/Css
 }
 
 .color-green{
@@ -16,6 +19,9 @@ width: 40%;
 }
 
 .color-green-baby{
+<<<<<<< HEAD
+    background-color: rgb(147, 216, 186);   
+=======
     background-color: rgb(147, 216, 186);    
 }
 
@@ -62,4 +68,5 @@ width: 40%;
 .filter{
     display:flex;
     justify-content:flex-end;
+>>>>>>> refs/remotes/origin/Css
 }
