@@ -1,56 +1,49 @@
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyAsPDjZ4dAT3ujmyV-gPrYhnADYDnK-AJs",
-    authDomain: "lovpets-3d183.firebaseapp.com",
-    databaseURL: "https://lovpets-3d183.firebaseio.com",
-    projectId: "lovpets-3d183",
-    storageBucket: "",
-    messagingSenderId: "540663191738"
-  };
-  firebase.initializeApp(config);
+// Get a reference to the database service
+var database = firebase.database();
 
-//input
-let InputEmail1 = document.querySelector('#InputEmail1');
-let InputPassword1 = document.querySelector('#InputPassword1');
+$(document).ready(function(){
+      
+    let collectionPost = database.ref('user/post/')
+      collectionPost.once('value')
+      .then(function(snapshot) {
+        snapshot.forEach(childSnapshot => {
+          var chilKey = childSnapshot.key;
+          var chilVal = childSnapshot.val();
+          $('.txt-list-Post').append(`<li>${chilVal.text}</li>`);
+        });
+ 
+      })
+    
+    $(".btn-post").click(function(event){
+        event.preventDefault();
 
-// //btn
-const btnSingIn = document.querySelector('.btnSingIn');
-const btnSingUp = document.querySelector('.btnSingUp');
+        //input
+        let txtPost = $('.txt-post').val();
+          database.ref('user/post/').push({
+            text: txtPost,
+          }); 
+    })
 
- // $(".btnSingUp")
-  
-  
- btnSingUp.addEventListener('click', function (event){
-     event.preventDefault();
-     console.log("AQUI")
-    firebase
-        .auth()
-        .createUserWithEmailAndPassword(InputEmail1.value, InputPassword1.value)
-        .then(function(){
-            alert('Bem vindo '+ InputEmail1.value );
-        })
-        .catch(function(error) {
-            console.error(error.code);
-            console.error(error.message);
-            alert('Falha ao cadastrar, verifique o erro no console');
-      });
-  });
+    $('.btn-nav-link').click(function(){
+      firebase.auth().signOut()
+      .then(function() {
+        alert('Sign-out successful');
+        window.location = "index.html"
 
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+    })
+})
 
-  btnSingIn.addEventListener('click', function(event){
-    event.preventDefault();
-    console.log("AQUI");
+// collectionPost.once('value', function(childSnapshot) {
+//   var Snapshot = childSnapshot.val();
+//   $('.txt-list-Post').html= '';
+   
+//   Object.keys(Snapshot).forEach(key => {
+ 
+//     $('.txt-list-Post').append(`<li>${Snapshot[key].text}</li>`);
+//   })
 
-    firebase
-        .auth()
-        .signInWithEmailAndPassword(InputEmail, InputPassword)
-        .then(function(result){
-            console.log(result);
-            alert('Autenticado ' + InputEmail1.value);
-        })
-        .catch(function(error){
-            console.error(error.code);
-            console.error(error.message);
-            alert('Falha ao autenticar, verifique o erro no console');
-      });
-  });
+// });
