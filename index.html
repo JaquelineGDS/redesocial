@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
 
     <title>Love Pets</title>
@@ -32,17 +31,25 @@
                         <div class="card-body">
                             <form class="form-signin formLogin-border">
                                 <div class="form-group">
-                                    <label for="InputEmail1">Email</label>
-                                    <input type="email" class="form-control InputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <label for="input-email">Email</label>
+                                    <input type="email" class="form-control input-email" aria-describedby="emailHelp" placeholder="Enter email">
                                     <small class="form-text text-muted">Nós nunca vamos compartilhar seu e-mail com mais ninguém.</small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="InputPassword1">Senha</label>
-                                    <input type="password" class="form-control InputPassword" placeholder="Senha">
+                                    <label for="input-password">Senha</label>
+                                    <input type="password" class="form-control input-password" placeholder="Senha">
                                     <small class="form-text text-muted"><a href="">Esqueceu sua senha?</a></small>
                                 </div>
-                                <button  class="btn btn-sm bkg-bkg btn-block btnSingnIn" type="submit">Acessar</button>
+                                <button  class="btn btn-sm bkg-bkg btn-block btn-singn-in" type="submit">Acessar</button>
                             </form>
+                            
+                            <div class="text-center">
+                                <p>Ou</p>
+                                <button class="btn btn-sm btn-primary btn-authFacebook"><i class="fa fa-facebook fa-2x"></i></button>
+                                <button class="btn btn-sm btn-info btn-authTwitter"><i class="fa fa-twitter fa-2x"></i></button>
+                                <button class="btn btn-sm btn-danger btn-authGoogle"><i class="fa fa-google fa-2x"></i></button>      
+                            </div>
+                             
                         </div>
 
                         <div class="card-footer">

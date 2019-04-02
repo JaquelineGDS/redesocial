@@ -14,7 +14,7 @@
     <title>Love Pets</title>
 </head>
 
-<body class="bkg-bkg color-green-baby">
+<body class="bkg-bkg color-green-baby container">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#"><img class="img-logo" src="img/logo-branco.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -42,7 +42,7 @@
                     <a class="nav-link" href="#">Busca</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Sair</a>
+                    <button class="btn btn-nav-link">Sair</button>
                 </li>
             </ul>
         </div>
@@ -57,10 +57,10 @@
             <div class="card">
                 <div class="card-header bkg-bkg">
                     NomedoPerfil
-                    <button type="button" class="btn btn-primary btn-sm btn-light">Postar</button>
+                    <button type="button" class="btn btn-primary btn-sm btn-light btn-post">Postar</button>
                 </div>
                 <div class="card-body">
-                    <textarea class="card-text" placeholder="Conte a seus amigos as novidades..."></textarea>
+                    <textarea class="card-text txt-post" placeholder="Conte a seus amigos as novidades..."></textarea>
                 </div>
                 <div class="card-header bkg-bkg">
                     <i class="far fa-images"></i>
@@ -90,6 +90,12 @@
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header bkg-bkg">
+                    <li class="txt-list-Post"> </li>
+                </div>
+            </div>
+            
         </div>
     </section>
 
@@ -102,7 +108,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+    <script src="database.js"></script>
     <script src="main.js"></script>
 
 </body>
