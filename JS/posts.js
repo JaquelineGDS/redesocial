@@ -33,26 +33,37 @@ function addPostToDB(text){
 }
 
 function createPost(text, key) {
-   
+
    // var txt2 = $("<textarea></textarea>").text(text);
     
     let template =
-     `<div class="card" data-div-id=${key}>
-        <div class="card-header bkg-bkg">
-            <input type="button" value="Delete" data-delete-id=${key} />
-            <input type="button" value="Edit" data-edit-id=${key} />
-        </div>
-        <div class="card-body">
+        `<div class="card" data-div-id=${key}>
+            <div class="card-header bkg-bkg">
+                <input type="button" value="Delete" data-delete-id=${key} />
+                <input type="button" value="Edit" data-edit-id=${key} />
+            </div>
+            <div class="card-body">
             <textarea class="card-text posts-input" data-text-id=${key}>${text}</textarea>
-        </div>        
+            </div>        
     </div>`
     // $(`textarea[data-text-id="${key}]`).text(text);
 
     $(".tasks-list").append(template)
 
+    // $(`input[data-delete-id="${key}"]`).click(function () {
+    //     database.ref("posts/" + USER_ID + "/" + key).remove();
+    //     $(`.card[data-div-id=${key}]`).remove();
+    // });
+
     $(`input[data-delete-id="${key}"]`).click(function () {
-        database.ref("posts/" + USER_ID + "/" + key).remove();
-        $(`.card[data-div-id=${key}]`).remove();
+        var acao = confirm("Tem certeza que deseja excluir esse post?")
+        if (acao) {
+            database.ref("posts/" + USER_ID + "/" + key).remove();
+            $(this).parent().remove();
+        }
+        else {
+            event.preventDefault();
+        }
     });
 
     $(`input[data-edit-id="${key}"]`).click(function () {
@@ -68,10 +79,9 @@ function createPost(text, key) {
 function signOut(){
     firebase.auth().signOut()
     .then(function() {
-      alert('Sign-out successful');
-      window.location = "index.html"
+        window.location = "home.html"
     })
     .catch(function(error) {
-      console.log(error);
+        console.log(error);
     })
 }
