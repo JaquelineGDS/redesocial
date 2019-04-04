@@ -1,5 +1,6 @@
 .bkg-bkg{
-   background-color: #4FBD8F;
+    /*background-image: linear-gradient(to right, #5acb9d, #28ad5a);*/
+    background-color: #4FBD8F;
 }
 
 .formLogin-border{
@@ -7,7 +8,7 @@
 }
 
 .img-logo{
-    width: 40%;
+width: 40%;
 }
 
 .color-green{
@@ -15,5 +16,50 @@
 }
 
 .color-green-baby{
-    background-color: rgb(147, 216, 186);   
+    background-color: rgb(147, 216, 186);    
+}
+
+.color-black{
+    color:black;
+}
+
+.navbar-light{
+    background-color: #4FBD8F;
+    margin-bottom:1rem;
+}
+
+.card{
+    margin-top:0.5rem;
+}
+
+.card-text{
+    border: 0 none;
+    resize:none;
+    outline: 0;
+    width:100%;
+}
+
+.card-header, .card-footer{
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+}
+
+.btn{
+    border-radius:2rem;
+}
+
+.fa-filter{
+    font-size:150%;
+    color:white;
+}
+
+.fa-images{
+    font-size:200%;
+    color:white;
+}
+
+.filter{
+    display:flex;
+    justify-content:flex-end;
 }
