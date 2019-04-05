@@ -80,7 +80,7 @@ function createPost(text, key) {
 function signOut(){
     firebase.auth().signOut()
     .then(function() {
-        window.location = "/HTML/singin.html"
+        window.location = "singin.html"
     })
     .catch(function(error) {
         console.log(error);
