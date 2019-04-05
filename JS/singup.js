@@ -1,18 +1,8 @@
 const database = firebase.database();
 
 $(document).ready(function(){
-    $(".btn-singn-up").click(createUser);
+    $(".btn-singn-up").click(signUpClick);
 })
-
-
-
-function catcherror(error) {
-    alert(error.message);
-    console.log(error.code, error.message);
-}
-
-
-
 
 function signUpClick(event) {
     event.preventDefault();
@@ -46,5 +36,5 @@ function handleError(error){
 }
 
 function redirectToTasks(userId){
-    window.location = "singin.html?id=" + userId;
+    window.location = "home.html?id=" + userId;
 }
