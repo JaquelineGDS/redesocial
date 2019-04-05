@@ -36,18 +36,20 @@ function createPost(text, key) {
 
    // var txt2 = $("<textarea></textarea>").text(text);
     
-    let template = `
-    <div class="tasks-list" data-div-id=${key}>
-        <div class="card" data-div-id=${key}>
-            <div class="card-header bkg-bkg">
-                <input type="button" value="Delete" data-delete-id=${key} />
-                <input type="button" value="Edit" data-edit-id=${key} />
+    let template =
+        `
+        <div class="tasks-list" data-div-id=${key}>
+            <div class="card">
+                <div class="card-header bkg-bkg">
+                    <input type="button" value="Delete" data-delete-id=${key} />
+                    <input type="button" value="Edit" data-edit-id=${key} />
+                </div>
+                <div class="card-body">
+                <textarea class="card-text posts-input" data-text-id=${key}>${text}</textarea>
+                </div>        
             </div>
-            <div class="card-body">
-            <textarea class="card-text posts-input" data-text-id=${key}>${text}</textarea>
-            </div>        
         </div>
-    </div>`
+         `
     // $(`textarea[data-text-id="${key}]`).text(text);
 
     $(".tasks-list").append(template)
@@ -81,7 +83,7 @@ function createPost(text, key) {
 function signOut(){
     firebase.auth().signOut()
     .then(function() {
-        window.location = "/HTML/singin.html"
+        window.location = "singin.html"
     })
     .catch(function(error) {
         console.log(error);
