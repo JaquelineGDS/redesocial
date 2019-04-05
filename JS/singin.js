@@ -61,5 +61,5 @@ function handleError(error){
 }
 
 function redirectToTasks(userId){
-    window.location = "/HTML/home.html?id=" + userId;
+    window.location = "home.html?id=" + userId;
 }

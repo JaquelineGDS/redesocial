@@ -20,7 +20,6 @@ function getTasksFromDB (){
 
 function addPostClick(event){
     event.preventDefault();
-
     var newTask = $(".posts-input").val();
     var taskFromDB = addPostToDB(newTask);
     createPost(newTask, taskFromDB.key) 

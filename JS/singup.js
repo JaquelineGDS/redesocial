@@ -40,5 +40,5 @@ function handleError(error){
 }
 
 function redirectToTasks(userId){
-    window.location = "/HTML/singin.html?id=" + userId;
+    window.location = "singin.html?id=" + userId;
 }
