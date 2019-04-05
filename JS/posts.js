@@ -36,8 +36,9 @@ function createPost(text, key) {
 
    // var txt2 = $("<textarea></textarea>").text(text);
     
-    let template =
-        `<div class="card" data-div-id=${key}>
+    let template = `
+    <div class="tasks-list" data-div-id=${key}>
+        <div class="card" data-div-id=${key}>
             <div class="card-header bkg-bkg">
                 <input type="button" value="Delete" data-delete-id=${key} />
                 <input type="button" value="Edit" data-edit-id=${key} />
@@ -45,6 +46,7 @@ function createPost(text, key) {
             <div class="card-body">
             <textarea class="card-text posts-input" data-text-id=${key}>${text}</textarea>
             </div>        
+        </div>
     </div>`
     // $(`textarea[data-text-id="${key}]`).text(text);
 
@@ -59,7 +61,7 @@ function createPost(text, key) {
         var acao = confirm("Tem certeza que deseja excluir esse post?")
         if (acao) {
             database.ref("posts/" + USER_ID + "/" + key).remove();
-            $(this).parent().remove();
+            $(`.tasks-list [data-div-id=${key}]`).remove();
         }
         else {
             event.preventDefault();
@@ -79,7 +81,7 @@ function createPost(text, key) {
 function signOut(){
     firebase.auth().signOut()
     .then(function() {
-        window.location = "home.html"
+        window.location = "/HTML/singin.html"
     })
     .catch(function(error) {
         console.log(error);

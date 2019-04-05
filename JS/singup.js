@@ -4,21 +4,15 @@ $(document).ready(function(){
     $(".btn-singn-up").click(createUser);
 })
 
-
-
 function catcherror(error) {
     alert(error.message);
     console.log(error.code, error.message);
 }
 
-
-
-
 function signUpClick(event) {
     event.preventDefault();
     let email = $(".input-email").val();
     let password = $(".input-password").val(); 
-    
     createUser(email, password)
 };
 
@@ -46,5 +40,5 @@ function handleError(error){
 }
 
 function redirectToTasks(userId){
-    window.location = "singin.html?id=" + userId;
+    window.location = "/HTML/singin.html?id=" + userId;
 }
