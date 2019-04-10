@@ -1,34 +1,33 @@
 var database = firebase.database();
 var USER_ID = window.location.search.match(/\?id=(.*)/)[1];
-console.log(USER_ID);
 
 var postType = "publico";
 
 $(document).ready(function () {
-    getTasksFromDB ()    
+    getPostFromDB ()    
     $(".add-posts").click(addPostClick);
     $(".nav-link-signOut").click(signOut);
 });
 
-function getTasksFromDB (){
+function getPostFromDB (){
     database.ref("posts/" + USER_ID).once('value')
         .then(function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
-                var childKey = childSnapshot.key;
-                var childData = childSnapshot.val();
-                createPost(childData.text, childKey,childData.postType)                 
+                let childKey = childSnapshot.key;
+                let childData = childSnapshot.val();
+                createPost(childData.text, childKey, childData.postType, childData.like)                 
             });
         });
 }
 
-function getTasksFilterFromDB (type){
+function getPostFilterFromDB (type){
     $(".tasks-list").remove();
     database.ref("posts/" + USER_ID).orderByChild("postType").equalTo(type)
         .once('value').then(function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
-                var childKey = childSnapshot.key;
-                var childData = childSnapshot.val();
-                createPost(childData.text, childKey, childData.postType)                 
+                let childKey = childSnapshot.key;
+                let childData = childSnapshot.val();
+                createPost(childData.text, childKey, childData.postType, childData.like)                
             });
         });
 }
@@ -36,39 +35,46 @@ function getTasksFilterFromDB (type){
 function addPostClick(event){
     event.preventDefault();
 
-    var newTask = $(".posts-input").val();
-    var taskFromDB = addPostToDB(newTask);
-    createPost(newTask, taskFromDB.key, postType) 
+    let newTask = $(".posts-input").val();
+    let taskFromDB = addPostToDB(newTask);
+    let like = 0;
+    createPost(newTask, taskFromDB.key, postType, like);
 }
 
 function addPostToDB(text){
     return database.ref("posts/" + USER_ID).push({
         text: text,
-        postType: postType
+        postType: postType,
+        like: 0
     });
 }
 
-function createPost(text, key, type) {
+function createPost(text, key, type, like) {
 
-   // var txt2 = $("<textarea></textarea>").text(text);
-    
     let template =
-        `
+
+    `
         <div class="tasks-list" data-div-id=${key}>
-            <div class="card">
+            <div class="card"  data-div-id=${key}>
                 <div class="card-header bkg-bkg">
                     <input type="button" value="Delete" data-delete-id=${key} />
-                    <label for="" data-text-id=${key}>${type}</label>
                     <input type="button" value="Edit" data-edit-id=${key} />
+                    <input type="button" value="salvar" style="display: none;" data-salve-id=${key} />
                 </div>
                 <div class="card-body">
-                <textarea class="card-text posts-input" data-text-id=${key}>${text}</textarea>
-                </div>        
+                    <p class="card-text posts-input" data-text-id=${key}>${text}</p>
+                </div>
+                <div class="card-footer bkg-bkg">
+                <form id="like-form">
+                <button data-like-id=${key} data-count-id=${like} class="like-button">${like} Likes</button>                
+            </form>
+                    <label for="" data-text-id=${key}>${type}</label>
+                </div>
             </div>
         </div>
         `
 
-    $(".task-list").append(template)
+    $(".task-list").prepend(template)
 
     $(`input[data-delete-id="${key}"]`).click(function () {
         var acao = confirm("Tem certeza que deseja excluir esse post?")
@@ -82,10 +88,35 @@ function createPost(text, key, type) {
     });
 
     $(`input[data-edit-id="${key}"]`).click(function () {
-        var editedText = prompt(`Edite seu texto: ${text}`);
-        $(`textarea[data-text-id=${key}]`).val(editedText);
+
+        $(`input[data-edit-id="${key}"]`).hide();
+        $(`input[data-delete-id="${key}"]`).hide();
+        $(`input[data-salve-id="${key}"]`).show();
+        console.log('entrou input[data-salve-id');
+        $(`p[data-text-id="${key}"]`).attr('contenteditable', 'true').focus();
+            $(`input[data-salve-id="${key}"]`).click(function() {
+                $(`input[data-salve-id="${key}"]`).hide();
+                $(`input[data-edit-id="${key}"]`).show();
+                $(`input[data-delete-id="${key}"]`).show();
+                
+                var editedText = $(`p[data-text-id="${key}"]`).html();
+                database.ref("posts/" + USER_ID + "/" + key).update({
+                    text: editedText
+                });
+
+                $(`p[data-text-id="${key}"]`).html(editedText);
+                $(`p[data-text-id="${key}"]`).attr('contenteditable', 'false');
+            })  
+    });
+    $(`button[data-like-id="${key}"]`).click(function () {
+        event.preventDefault();
+        var count = $(this).data("count-id")
+        count = count + 1
+        $(this).data("count-id", count)
+        $(this).html(count + ' Likes')
+
         database.ref("posts/" + USER_ID + "/" + key).update({
-            text: editedText
+            like: count
         });
     });
 }
@@ -94,33 +125,30 @@ function createPost(text, key, type) {
 $('a[href="#publico"]').click(function(){
     postType = "publico"
     $("#btn-privacidade").html('Público');
-    console.log(postType);
 });
 $('a[href="#publico-filtro"]').click(function(){
-    getTasksFilterFromDB ("publico");
+    getPostFilterFromDB ("publico");
 });
 
 $('a[href="#amigos"]').click(function(){    
     postType = "amigos"
     $("#btn-privacidade").html('Amigos');
-    console.log(postType);
 });
 $('a[href="#amigos-filtro"]').click(function(){
-    getTasksFilterFromDB ("amigos");
+    getPostFilterFromDB ("amigos");
 });
 
 $('a[href="#privado"]').click(function(){
     postType = "privado"
     $("#btn-privacidade").html('Privado');
-    console.log(postType);
 });
 $('a[href="#privado-filtro"]').click(function(){
-    getTasksFilterFromDB ("privado");
+    getPostFilterFromDB ("privado");
 });
 
 
 $('a[href="#todos-filtro"]').click(function(){
-    getTasksFromDB ();
+    getPostFromDB ();
 });
 
     
@@ -130,6 +158,5 @@ function signOut(){
         window.location = "singin.html"
     })
     .catch(function(error) {
-        console.log(error);
     })
 }
