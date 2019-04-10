@@ -1,6 +1,9 @@
 var database = firebase.database();
 var USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 console.log(USER_ID);
+
+var postType = "publico"
+
 $(document).ready(function () {
     getTasksFromDB ()    
     $(".add-posts").click(addPostClick);
@@ -79,6 +82,23 @@ function createPost(text, key) {
 
     });
 }
+
+//
+$('a[href="#publico"]').click(function(){
+    postType = "publico"
+    $("#btn-privacidade").html('Público');
+    console.log(postType);
+});
+$('a[href="#amigos"]').click(function(){
+    postType = "amigos"
+    $("#btn-privacidade").html('Amigos');
+    console.log(postType);
+});
+$('a[href="#privado"]').click(function(){
+    postType = "privado"
+    $("#btn-privacidade").html('Privado');
+    console.log(postType);
+});
     
 function signOut(){
     firebase.auth().signOut()

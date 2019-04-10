@@ -47,14 +47,13 @@
 
     <section>
         <div class="container">
-            <div class="filter">
-                <i class="fas fa-filter"></i>
-                <a class="color-black" href="">Filtrar publicações</a>
-            </div>
             <div class="card">
                 <div class="card-header bkg-bkg">
                     NomedoPerfil
-                    <button type="button" class="btn btn-primary btn-sm btn-light add-posts">Postar</button>
+                    <div class="filter">
+                        <i class="fas fa-filter"></i>
+                        <a class="color-black" href="">Filtrar publicações</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <textarea class="card-text posts-input"
@@ -63,18 +62,19 @@
                 <div class="card-footer bkg-bkg">
                     <i class="far fa-images"></i>
                     <div class="btn-group">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle btn-light" type="button"
+                        <button class="btn btn-secondary btn-sm dropdown-toggle btn-light" type="button" id="btn-privacidade"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Privacidade
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Público</a>
-                            <a class="dropdown-item" href="#">Amigos</a>
-                            <a class="dropdown-item" href="#">Privado</a>
+                            <a class="dropdown-item" href="#publico">Público</a>
+                            <a class="dropdown-item" href="#amigos">Amigos</a>
+                            <a class="dropdown-item" href="#privado">Privado</a>
                         </div>
                     </div>
                     <div class="btn-group">
-                        <button class="btn btn-secondary btn-sm dropdown-toggle btn-light" type="button"
+                        <button type="button" class="btn btn-primary btn-sm btn-light add-posts">Postar</button>
+                        <!-- <button class="btn btn-secondary btn-sm dropdown-toggle btn-light" type="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Tipo de postagem
                         </button>
@@ -84,7 +84,7 @@
                             <a class="dropdown-item" href="#">Procura-se</a>
                             <a class="dropdown-item" href="#">Doa-se</a>
                             <a class="dropdown-item" href="#">Serviços</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
