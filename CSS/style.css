@@ -1,5 +1,4 @@
 .bkg-bkg{
-    /*background-image: linear-gradient(to right, #5acb9d, #28ad5a);*/
     background-color: #4FBD8F;
 }
 
@@ -19,16 +18,12 @@ width: 40%;
     background-color: rgb(147, 216, 186);    
 }
 
-.color-black{
-    color:black;
-}
-
-.navbar-light{
+.navbar-green{
     background-color: #4FBD8F;
     margin-bottom:1rem;
 }
 
-.card{
+.card-margin{
     margin-top:0.5rem;
 }
 
@@ -39,13 +34,7 @@ width: 40%;
     width:100%;
 }
 
-.card-header, .card-footer{
-    display:flex;
-    justify-content:space-between;
-    width:100%;
-}
-
-.btn{
+.btn-border{
     border-radius:2rem;
 }
 
@@ -57,9 +46,4 @@ width: 40%;
 .fa-images{
     font-size:200%;
     color:white;
-}
-
-.filter{
-    display:flex;
-    justify-content:flex-end;
 }

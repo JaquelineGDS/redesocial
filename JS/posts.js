@@ -55,8 +55,8 @@ function createPost(text, key, type, like) {
 
     `
         <div class="tasks-list" data-div-id=${key}>
-            <div class="card"  data-div-id=${key}>
-                <div class="card-header bkg-bkg">
+            <div class="card card-margin"  data-div-id=${key}>
+                <div class="card-header d-flex justify-content-between bkg-bkg">
                     <input type="button" value="Delete" data-delete-id=${key} />
                     <input type="button" value="Edit" data-edit-id=${key} />
                     <input type="button" value="salvar" style="display: none;" data-salve-id=${key} />
@@ -64,7 +64,7 @@ function createPost(text, key, type, like) {
                 <div class="card-body">
                     <p class="card-text posts-input" data-text-id=${key}>${text}</p>
                 </div>
-                <div class="card-footer bkg-bkg">
+                <div class="card-footer d-flex justify-content-between bkg-bkg">
                 <form id="like-form">
                 <button data-like-id=${key} data-count-id=${like} class="like-button">${like} Likes</button>                
             </form>
