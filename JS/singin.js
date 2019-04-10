@@ -1,13 +1,13 @@
 $(document).ready(function(){
-   // auth EmailAndPassword
+    // auth EmailAndPassword
     $(".btn-singn-in").click(signInClick);
-    // auth redes socials
+     // auth redes socials
     $('.btn-authFacebook').click(authFacebook);
     $('.btn-authTwitter').click(authTwitter);
     $('.btn-authGoogle').click(authGoogle);
 })
 
-//login authEmailAndPassword
+ //login authEmailAndPassword
 function signInClick(event) {
     event.preventDefault();
     let email = $(".input-email").val();
@@ -27,7 +27,7 @@ function signInUser(email, password){
             handleError(error);            
         });
 }
-//login com redes socials
+ //login com redes socials
 function authFacebook(){
     let provider = new firebase.auth.FacebookAuthProvider();
     signIn(provider);
@@ -43,7 +43,7 @@ function authGoogle(){
     signIn(provider);
 }
 
-//chamando as functions
+ //chamando as functions
 function signIn(provider) {
     firebase.auth()
         .signInWithPopup(provider)

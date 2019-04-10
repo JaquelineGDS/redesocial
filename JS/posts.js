@@ -49,7 +49,7 @@ function createPost(text, key) {
                 </div>        
             </div>
         </div>
-         `
+        `
     // $(`textarea[data-text-id="${key}]`).text(text);
 
     $(".tasks-list").append(template)
