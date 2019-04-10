@@ -10,14 +10,14 @@
 
 ## Preâmbulo
 
-Redes sociais são uma forma muito importante de conexão entre pessoas no século XXI. Através delas, usuários lêem notícias sobre o mundo, encontram eventos interessantes para o seu perfil, conversam com familiares e amigos distantes, entre outros.
-Não apenas importantes para a interação social e informação, as redes sociais funcionam como uma forma de reunir desconhecidos com interesses em comum, que foi o objetivo focado em nosto projeto.
+Redes sociais são uma das principais e mais importantes formas de conexão entre pessoas no século XXI. Através delas, usuários lêem notícias sobre o mundo, encontram eventos interessantes para o seu perfil, conversam com familiares e amigos distantes, entre outros.
+Não apenas importantes para a interação social e informação, as redes sociais funcionam como uma forma de unir desconhecidos com interesses em comum, dai surgiu o objetivo deste projeto.
 
 ## Definição_do_produto
 
-Nossa rede social foi desenvolvida para ser mobile first e é focada em usuários que amem animais, seja o dono de um cachorrinho até o defensor das causas animais de forma ativa. 
+A rede social "Love Pets" foi desenvolvida tendo como base o conceito mobile first, com foco em usuários que amam animais, seja o dono de um cachorrinho até o defensor das causas animais de forma ativa. 
 Devido ao tempo disponível, não foi possível implementar todas as funcionalidades desejadas, como por exemplo a de adicionar amigos, mas o objetivo é que ela funcione unindo essas pessoas com o amor pelos animais em comum, permitindo que ela postem informações de lazer, como o dia a dia do seu animalzinho de estimação, até notícias, como novas leis de proteção dos animais aprovadas, eventos de vacinação e castração coletivos ou até poder registrar o calendário de vacinação do seu pet.
-Em uma versão 2.0, todas essas funcionalidades seriam implementadas, mas no momento estão funcionais as ações de login, cadastro, postagem, filtro, exclusão e edição dos posts.
+Em uma versão 2.0, todas essas funcionalidades serão implementadas, mas no momento estão funcionais as ações de login, cadastro, postagem, likes, contagem dos likes, filtro, exclusão e edição dos posts.
 
 ## Público_alvo
 
