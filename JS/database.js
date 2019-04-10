@@ -1,5 +1,6 @@
- // Initialize Firebase
-var config = {
+
+  // Initialize Firebase
+  var config = {
     apiKey: "AIzaSyAsPDjZ4dAT3ujmyV-gPrYhnADYDnK-AJs",
     authDomain: "lovpets-3d183.firebaseapp.com",
     databaseURL: "https://lovpets-3d183.firebaseio.com",
