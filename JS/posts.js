@@ -2,7 +2,7 @@ var database = firebase.database();
 var USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 console.log(USER_ID);
 
-var postType = "publico"
+var postType = "publico";
 
 $(document).ready(function () {
     getTasksFromDB ()    
@@ -16,7 +16,19 @@ function getTasksFromDB (){
             snapshot.forEach(function (childSnapshot) {
                 var childKey = childSnapshot.key;
                 var childData = childSnapshot.val();
-                createPost(childData.text, childKey)                 
+                createPost(childData.text, childKey,childData.postType)                 
+            });
+        });
+}
+
+function getTasksFilterFromDB (type){
+    $(".tasks-list").remove();
+    database.ref("posts/" + USER_ID).orderByChild("postType").equalTo(type)
+        .once('value').then(function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                var childKey = childSnapshot.key;
+                var childData = childSnapshot.val();
+                createPost(childData.text, childKey, childData.postType)                 
             });
         });
 }
@@ -26,16 +38,17 @@ function addPostClick(event){
 
     var newTask = $(".posts-input").val();
     var taskFromDB = addPostToDB(newTask);
-    createPost(newTask, taskFromDB.key) 
+    createPost(newTask, taskFromDB.key, postType) 
 }
 
 function addPostToDB(text){
     return database.ref("posts/" + USER_ID).push({
-        text: text
+        text: text,
+        postType: postType
     });
 }
 
-function createPost(text, key) {
+function createPost(text, key, type) {
 
    // var txt2 = $("<textarea></textarea>").text(text);
     
@@ -45,6 +58,7 @@ function createPost(text, key) {
             <div class="card">
                 <div class="card-header bkg-bkg">
                     <input type="button" value="Delete" data-delete-id=${key} />
+                    <label for="" data-text-id=${key}>${type}</label>
                     <input type="button" value="Edit" data-edit-id=${key} />
                 </div>
                 <div class="card-body">
@@ -53,14 +67,8 @@ function createPost(text, key) {
             </div>
         </div>
         `
-    // $(`textarea[data-text-id="${key}]`).text(text);
 
-    $(".tasks-list").append(template)
-
-    // $(`input[data-delete-id="${key}"]`).click(function () {
-    //     database.ref("posts/" + USER_ID + "/" + key).remove();
-    //     $(`.card[data-div-id=${key}]`).remove();
-    // });
+    $(".task-list").append(template)
 
     $(`input[data-delete-id="${key}"]`).click(function () {
         var acao = confirm("Tem certeza que deseja excluir esse post?")
@@ -79,26 +87,42 @@ function createPost(text, key) {
         database.ref("posts/" + USER_ID + "/" + key).update({
             text: editedText
         });
-
     });
 }
 
-//
+//Filtro
 $('a[href="#publico"]').click(function(){
     postType = "publico"
     $("#btn-privacidade").html('Público');
     console.log(postType);
 });
-$('a[href="#amigos"]').click(function(){
+$('a[href="#publico-filtro"]').click(function(){
+    getTasksFilterFromDB ("publico");
+});
+
+$('a[href="#amigos"]').click(function(){    
     postType = "amigos"
     $("#btn-privacidade").html('Amigos');
     console.log(postType);
 });
+$('a[href="#amigos-filtro"]').click(function(){
+    getTasksFilterFromDB ("amigos");
+});
+
 $('a[href="#privado"]').click(function(){
     postType = "privado"
     $("#btn-privacidade").html('Privado');
     console.log(postType);
 });
+$('a[href="#privado-filtro"]').click(function(){
+    getTasksFilterFromDB ("privado");
+});
+
+
+$('a[href="#todos-filtro"]').click(function(){
+    getTasksFromDB ();
+});
+
     
 function signOut(){
     firebase.auth().signOut()
