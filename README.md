@@ -65,9 +65,9 @@ Entrevistas com os usuários utilizando o Protótipo Inicial Digital
 ## Protótipos
 
 *Protótipo Inicial Digital
-[Link](https://marvelapp.com/project/3867485/)
+[Link](https://marvelapp.com/6g1f5f1)
 
 *Protótipo Final Digital Figma
-[Link](https://www.figma.com/file/Xcb5UMGFZmNWveJYF1mdXu3L/Love-Pets?node-id=0%3A1)
+[Link](https://www.figma.com/proto/Xcb5UMGFZmNWveJYF1mdXu3L/Love-Pets?node-id=5%3A36&scaling=scale-down)
 
 
