@@ -27,7 +27,6 @@ function observador(){
     })
 }
 
-
 function addPostClick(event){
     console.log("addpostclick")
     event.preventDefault();
