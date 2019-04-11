@@ -2,18 +2,154 @@ var database = firebase.database();
 var USER_ID = window.location.search.match(/\?id=(.*)/)[1];
 console.log(USER_ID);
 
-var postType = "publico";
-
-$(document).ready(function () {
-    console.log('entrou ready')
-    getTasksFromDB(); 
-    $(".add-posts").click(addPostClick);
-    $(".nav-link-signOut").click(signOut);
+$(document).ready(function () { 
+    filterSelect(); 
+    $('.nav-link-signOut').click(signOut)
+    $(".add-posts").click(addPostClick)
+    $(".filter-privacy").change(filterSelect);
+    observador();
 });
 
-function getTasksFromDB (){
-    console.log('entrou fromDB')
+function observador(){
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+         if(user != null){
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var uid = user.uid;
+            let profilePicUrl = getUserPhotoURL();
+            console.log(profilePicUrl)
+            $(".nameUser").html(email);
+            $(".img-user").css('background-image', 'url(img/ni.jpg)');
+            $(".photoUser").css('background-image', 'url(' + profilePicUrl + ')');
+         }
+        }
+    })
+}
+
+
+function addPostClick(event){
+    console.log("addpostclick")
+    event.preventDefault();
+    let like = 0;
+    let newtext = $(".posts-input").val();
+    let postType = $(".privacyPost").val();
+    getdataPost(newtext, postType, like);
+    $(".posts-input").val("");
+}
+
+function getdataPost(newtext, postType, like){
+    console.log("getdataPost")
+    let postsFromDB = addPostToDB(newtext, postType, like);
+    createPost(newtext, postsFromDB.key, postType, like );
+}
+
+function addPostToDB(newtext, postType, like){
+    console.log("addPostToDB")
+    return database.ref("posts/" + USER_ID).push({
+            text: newtext,
+            postType: postType,
+            like: like
+    });
+}
+
+function createPost(text, key, type, like) {
+   template = `
+        <div class="list-post" data-div-id=${key}>
+            <div class="card mb-2"  data-div-id=${key}>
+                <div class=" d-flex  align-items-end background-green">
+                    <button class="btn" value="Delete" data-delete-id=${key}><i class="fas fa-trash-alt"></i> </button>
+                    <button class="btn" value="Edit" data-edit-id=${key}><i class="fas fa-edit"></i></button> 
+                    <button class="btn" value="salvar" style="display: none;" data-salve-id=${key}><i class="fas fa-save"></i> </button>
+                </div>
+                <div class="card-body">
+                    <p class="card-text posts-input" data-text-id=${key}>${text}</p>
+                </div>
+                <div class="card-footer bkg-bkg">
+                    <form id="like-form">
+                        <button class="btn" data-like-id=${key} data-count-id=${like} class="like-button"><i class="fab fa-gratipay"></i>${like}</button>
+                    </form>
+                    <span data-text-id=${key}>${type}<span>
+                </div>
+            </div>
+        </div>
+        `
+   $(".list-posts").prepend(template)
+
+   deletePost(key);
+   editPost(key);
+   likePost(key);
+}
+
+function deletePost(key){
+    $(`button[data-delete-id="${key}"]`).click(function () {
+        var acao = confirm("Tem certeza que deseja excluir esse post?")
+        if (acao) {
+            database.ref("posts/" + USER_ID + "/" + key).remove();
+            $(`.list-post[data-div-id=${key}]`).remove();
+        }
+        
+    });
+}
+
+function editPost(key){
+    $(`button[data-edit-id="${key}"]`).click(function () {
+        console.log('entrou editar');
+
+        $(`button[data-edit-id="${key}"]`).hide();
+        $(`button[data-delete-id="${key}"]`).hide();
+        $(`button[data-salve-id="${key}"]`).show();
+        console.log('entrou button[data-salve-id');
+        $(`p[data-text-id="${key}"]`).attr('contenteditable', 'true').focus();
+    
+            $(`button[data-salve-id="${key}"]`).click(function() {
+            
+                $(`button[data-salve-id="${key}"]`).hide();
+                $(`button[data-edit-id="${key}"]`).show();
+                $(`button[data-delete-id="${key}"]`).show();
+                
+                var editedText = $(`p[data-text-id="${key}"]`).html();
+
+                database.ref("posts/" + USER_ID + "/" + key).update({
+                    text: editedText
+                });
+                
+                $(`p[data-text-id="${key}"]`).html(editedText);
+                $(`p[data-text-id="${key}"]`).attr('contenteditable', 'false');
+            
+            })  
+    });
+}
+
+function likePost(key){
+    $(`button[data-like-id="${key}"]`).click(function () {
+        event.preventDefault();
+        var count = $(this).data("count-id")
+        count += 1
+        $(this).data("count-id", count)
+        $(this).html( `<i class="fab fa-gratipay"></i>` + count)
+
+        database.ref("posts/" + USER_ID + "/" + key).update({
+            like: count
+        });
+    });
+}
+
+// filter
+function filterSelect(){
+    let selectPrivacy = $(".filter-privacy").val();
+    console.log(selectPrivacy)
+    if(selectPrivacy == "todos"){
+        getPostsFromDB();
+    }else{
+        getPostFilterFromDB(selectPrivacy);
+    }
+  }
+
+  function getPostsFromDB(){
+    $(".list-posts").html("");
     database.ref("posts/" + USER_ID).once('value')
+ 
         .then(function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
                 let childKey = childSnapshot.key;
@@ -23,146 +159,19 @@ function getTasksFromDB (){
         });
 }
 
-function getTasksFilterFromDB (type){
-    console.log('entrou filter')
-    $(".tasks-list").remove();
-    database.ref("posts/" + USER_ID).orderByChild("postType").equalTo(type)
+function getPostFilterFromDB(selectPrivacy){
+    $(".list-posts").html("");
+    database.ref("posts/" + USER_ID).orderByChild("postType").equalTo(selectPrivacy)
         .once('value').then(function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
                 let childKey = childSnapshot.key;
                 let childData = childSnapshot.val();
-                createPost(childData.text, childKey, childData.postType, childData.like)                 
+                console.log(childData.text, childKey, childData.postType, childData.like); 
+                createPost(childData.text, childKey, childData.postType, childData.like);
             });
         });
 }
-
-function addPostClick(event){
-    event.preventDefault();
-    let like=0;
-    let newTask = $(".posts-input").val();
-    let taskFromDB = addPostToDB(newTask);
-    createPost(newTask, taskFromDB.key, postType, like) 
-}
-
-function addPostToDB(text){
-    console.log('post fromDB')
-    return database.ref("posts/" + USER_ID).push({
-        text: text,
-        postType: postType,
-        like: 0
-    });
-}
-
-function createPost(text, key, type, like) {
-    console.log(text, key, type, like)
-   
-   template = `
-        <div class="list-post" data-div-id=${key}>
-            <div class="card mb-2"  data-div-id=${key}>
-                <div class="card-header bkg-bkg">
-                    <input type="button" value="Delete" data-delete-id=${key} />
-                    <input type="button" value="Edit" data-edit-id=${key} />
-                    <input type="button" value="salvar" style="display: none;" data-salve-id=${key} />
-                </div>
-                <div class="card-body">
-                    <p class="card-text posts-input" data-text-id=${key}>${text}</p>
-                </div>
-                <div class="card-footer bkg-bkg">
-                    <form id="like-form">
-                        <button data-like-id=${key} data-count-id=${like} class="like-button">${like} Likes</button>
-                    </form>
-                    <label for="" data-text-id=${key}>${type}</label>
-                </div>
-            </div>
-        </div>
-        `
-
-   $(".list-posts").prepend(template)
-
-    $(`input[data-delete-id="${key}"]`).click(function () {
-        var acao = confirm("Tem certeza que deseja excluir esse post?")
-        if (acao) {
-            database.ref("posts/" + USER_ID + "/" + key).remove();
-            $(`.list-post[data-div-id=${key}]`).remove();
-        }
-        
-    });
-
-    $(`input[data-edit-id="${key}"]`).click(function () {
-        console.log('entrou editar');
-
-        $(`input[data-edit-id="${key}"]`).hide();
-        $(`input[data-delete-id="${key}"]`).hide();
-        $(`input[data-salve-id="${key}"]`).show();
-        console.log('entrou input[data-salve-id');
-        $(`p[data-text-id="${key}"]`).attr('contenteditable', 'true').focus();
-        console.log('entrou attr');
-
-            $(`input[data-salve-id="${key}"]`).click(function() {
-                console.log('entrou salvar');
-
-                $(`input[data-salve-id="${key}"]`).hide();
-                $(`input[data-edit-id="${key}"]`).show();
-                $(`input[data-delete-id="${key}"]`).show();
-                
-                var editedText = $(`p[data-text-id="${key}"]`).html();
-                console.log(editedText);
-                database.ref("posts/" + USER_ID + "/" + key).update({
-                    text: editedText
-                });
-                console.log('salcvou bd');
-
-                $(`p[data-text-id="${key}"]`).html(editedText);
-                $(`p[data-text-id="${key}"]`).attr('contenteditable', 'false');
-                console.log('editou');
-            })  
-    });
-    $(`button[data-like-id="${key}"]`).click(function () {
-        event.preventDefault();
-        var count = $(this).data("count-id")
-        count += 1
-        $(this).data("count-id", count)
-        $(this).html(count + ' Likes')
-
-        database.ref("posts/" + USER_ID + "/" + key).update({
-            like: count
-        });
-    });
-}
-
-//Filtro
-$('a[href="#publico"]').click(function(){
-    postType = "publico"
-    $("#btn-privacidade").html('Público');
-    console.log(postType);
-});
-$('a[href="#publico-filtro"]').click(function(){
-    getTasksFilterFromDB ("publico");
-});
-
-$('a[href="#amigos"]').click(function(){    
-    postType = "amigos"
-    $("#btn-privacidade").html('Amigos');
-    console.log(postType);
-});
-$('a[href="#amigos-filtro"]').click(function(){
-    getTasksFilterFromDB ("amigos");
-});
-
-$('a[href="#privado"]').click(function(){
-    postType = "privado"
-    $("#btn-privacidade").html('Privado');
-    console.log(postType);
-});
-$('a[href="#privado-filtro"]').click(function(){
-    getTasksFilterFromDB ("privado");
-});
-
-
-$('a[href="#todos-filtro"]').click(function(){
-    getTasksFromDB ();
-});
-
+// signOut
 function signOut(){
     firebase.auth().signOut()
     .then(function() {
@@ -171,4 +180,8 @@ function signOut(){
     .catch(function(error) {
         console.log(error);
     })
+}
+
+function getUserPhotoURL(){
+    return firebase.auth().currentUser.photoURL || 'img/ni.jpg';
 }
