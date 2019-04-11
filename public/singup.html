@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="CSS/style.css">
 
     <title>Love Pets</title>
 </head>
 
-<body class="bkg-bkg">
+<body class="background-green">
 
     <section>
         <div class="container">
@@ -22,45 +22,51 @@
                     </div>
                     <div class="card card-signin shadow pb-0"> 
                         <div class="card-header text-center">      
-                            <h5 class="card-title text-center color-green">Sign In</h5>
+                            <h5 class="card-title text-center color-green">Sign Up</h5>
                         </div>
                         <div class="card-body">
                             <form class="form-signin formLogin-border">
                                 <div class="form-group">
+                                    <label for="input-name">Nome</label>
+                                    <input type="text" class="form-control input-name" placeholder="Insira seu Nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-last-name">Sobrenome</label>
+                                    <input type="text" class="form-control input-last-name" placeholder="Insira seu Sobrenome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input-file">Foto</label>
+                                    <input type="file" class="form-control input-file">
+                                </div>
+                                <div class="form-group">
                                     <label for="input-email">Email</label>
-                                    <input type="email" class="form-control input-email" aria-describedby="emailHelp" placeholder="Enter email">
+                                    <input type="email" class="form-control input-email" aria-describedby="emailHelp" placeholder="Insira seu email">
                                     <small class="form-text text-muted">Nós nunca vamos compartilhar seu e-mail com mais ninguém.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="input-password">Senha</label>
-                                    <input type="password" class="form-control input-password" placeholder="Senha">
-                                    <small class="form-text text-muted"><a href="">Esqueceu sua senha?</a></small>
+                                    <input type="password" class="form-control input-password" placeholder="Insira sua senha">
                                 </div>
-                                <button  class="btn btn-sm bkg-bkg btn-block btn-singn-in" type="submit">Acessar</button>
+                                <button  class="btn btn-sm background-green btn-block btn-singn-up" type="submit">Cadastrar</button>
                             </form>
-                            
-                            <div class="text-center">
-                                <p>Ou</p>
-                                <button class="btn btn-sm btn-primary btn-authFacebook"><i class="fa fa-facebook fa-2x"></i></button>
-                                <button class="btn btn-sm btn-info btn-authTwitter"><i class="fa fa-twitter fa-2x"></i></button>
-                                <button class="btn btn-sm btn-danger btn-authGoogle"><i class="fa fa-google fa-2x"></i></button>      
-                            </div>
                         </div>
                         <div class="card-footer">
-                            <h6 class="text-center">Ainda não possui uma conta?<a href="singup.html" class=""> Criar uma conta</a></h6>
+                            <h6 class="text-center">Já possui uma conta?<a href="index.html" class=""> Acessar</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
     <script src="JS/database.js"></script>
-    <script src="JS/singin.js"></script>
-    
+    <script src="JS/singup.js"></script>
+
 </body>
 </html>
