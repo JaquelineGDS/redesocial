@@ -2,8 +2,6 @@ $(document).ready(function(){
     // auth EmailAndPassword
     $(".btn-singn-in").click(signInClick);
      // auth redes socials
-    $('.btn-authFacebook').click(authFacebook);
-    $('.btn-authTwitter').click(authTwitter);
     $('.btn-authGoogle').click(authGoogle);
 })
 
@@ -28,15 +26,6 @@ function signInUser(email, password){
         });
 }
  //login com redes socials
-function authFacebook(){
-    let provider = new firebase.auth.FacebookAuthProvider();
-    signIn(provider);
-}
-
-function authTwitter(){
-    let provider = new firebase.auth.TwitterAuthProvider();
-    signIn(provider);
-}
 
 function authGoogle(){
     let provider = new firebase.auth.GoogleAuthProvider();

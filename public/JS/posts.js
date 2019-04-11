@@ -1,6 +1,5 @@
 var database = firebase.database();
 var USER_ID = window.location.search.match(/\?id=(.*)/)[1];
-console.log(USER_ID);
 
 $(document).ready(function () { 
     filterSelect(); 
@@ -15,10 +14,7 @@ function observador(){
         if (user) {
          if(user != null){
             var email = user.email;
-            var emailVerified = user.emailVerified;
-            var uid = user.uid;
             let profilePicUrl = getUserPhotoURL();
-            console.log(profilePicUrl)
             $(".nameUser").html(email);
             $(".img-user").css('background-image', 'url(img/ni.jpg)');
             $(".photoUser").css('background-image', 'url(' + profilePicUrl + ')');
@@ -28,7 +24,6 @@ function observador(){
 }
 
 function addPostClick(event){
-    console.log("addpostclick")
     event.preventDefault();
     let like = 0;
     let newtext = $(".posts-input").val();
@@ -38,13 +33,11 @@ function addPostClick(event){
 }
 
 function getdataPost(newtext, postType, like){
-    console.log("getdataPost")
     let postsFromDB = addPostToDB(newtext, postType, like);
     createPost(newtext, postsFromDB.key, postType, like );
 }
 
 function addPostToDB(newtext, postType, like){
-    console.log("addPostToDB")
     return database.ref("posts/" + USER_ID).push({
             text: newtext,
             postType: postType,
@@ -93,12 +86,11 @@ function deletePost(key){
 
 function editPost(key){
     $(`button[data-edit-id="${key}"]`).click(function () {
-        console.log('entrou editar');
-
+      
         $(`button[data-edit-id="${key}"]`).hide();
         $(`button[data-delete-id="${key}"]`).hide();
         $(`button[data-salve-id="${key}"]`).show();
-        console.log('entrou button[data-salve-id');
+       
         $(`p[data-text-id="${key}"]`).attr('contenteditable', 'true').focus();
     
             $(`button[data-salve-id="${key}"]`).click(function() {
@@ -137,7 +129,7 @@ function likePost(key){
 // filter
 function filterSelect(){
     let selectPrivacy = $(".filter-privacy").val();
-    console.log(selectPrivacy)
+   
     if(selectPrivacy == "todos"){
         getPostsFromDB();
     }else{
@@ -165,7 +157,7 @@ function getPostFilterFromDB(selectPrivacy){
             snapshot.forEach(function (childSnapshot) {
                 let childKey = childSnapshot.key;
                 let childData = childSnapshot.val();
-                console.log(childData.text, childKey, childData.postType, childData.like); 
+               
                 createPost(childData.text, childKey, childData.postType, childData.like);
             });
         });
