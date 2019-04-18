@@ -33,13 +33,13 @@ Quando utilizam ou utilizariam seu produto?
 Personas
 
 *1
-![Cláudia](img/Claudia.png)
+![Cláudia](public/img/Claudia.png)
 
 *2
-![Fernando](img/Fernando.png)
+![Fernando](public/img/Fernando.png)
 
 *3
-![Maria](img/maria.png)
+![Maria](public/img/maria.png)
 		
 
 ## Testes_de_usabilidade
